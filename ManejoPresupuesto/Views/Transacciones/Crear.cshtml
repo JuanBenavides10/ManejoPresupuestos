@@ -1,0 +1,74 @@
+﻿@model TransaccionCreacionViewModel 
+
+@{
+	ViewData["Title"] = "Crear Transaccion";
+}
+
+<h1>Crear Transaccion</h1>
+<h5>Una transaccion te permite indicar tus ingresos y gastos</h5>
+
+<form asp-controller="Transacciones" asp-action="Crear">
+	<div asp-validation-summary="ModelOnly" class="text-danger"></div> <!--ModelOnly Muestra errores generales, no ligados a ninguna propiedad, estos errores pueden venir de cualquier parte, pero lo mas comun es que venga del controlador-->
+
+	<div class="mb-3">
+		<label asp-for="FechaTransaccion" class="form-label"></label>
+			<input asp-for="FechaTransaccion" class="form-control"/>
+		<span asp-validation-for="FechaTransaccion" class="text-danger"></span> <!--Muestra mensajes de error de las validaciones del MODELO , de una propiedad especifica, en este caso "FechaTransaccion"-->
+	</div>
+
+	<div class="mb-3">
+		<label asp-for="CuentaId" class="form-label"></label>
+		<select asp-for="CuentaId" asp-items="Model.Cuentas" class="form-select"></select>
+		<span asp-validation-for="CuentaId" class="text-danger"></span>
+	</div>
+
+	<div class="mb-3">
+		<label asp-for="TipoOperacionId" class="form-label"></label>
+		<select asp-for="TipoOperacionId" asp-items="Html.GetEnumSelectList<TipoOperacion>()" class="form-select"></select> <!-- genera automáticamente una lista de SelectListItem a partir de un enum llamado TipoOperacion-->
+		<span asp-validation-for="TipoOperacionId" class="text-danger"></span>
+	</div>
+
+	<div class="mb-3">
+		<label asp-for="CategoriaId" class="form-label"></label>
+		<select asp-for="CategoriaId" asp-items="Model.Categorias" class="form-select"></select>
+		<span asp-validation-for="CategoriaId" class="text-danger"></span>
+	</div>
+
+	<div class="mb-3">
+		<label asp-for="Monto" class="form-label"></label>
+		<input asp-for="Monto" class="form-control" />
+		<span asp-validation-for="Monto" class="text-danger"></span> <!--Muestra mensajes de error de las validaciones del MODELO , de una propiedad especifica, en este caso "FechaTransaccion"-->
+	</div>
+	<div class="mb-3">
+		<label asp-for="Nota" class="form-label"></label>
+		<textarea asp-for="Nota" class="form-control"></textarea> 
+		<span asp-validation-for="Nota" class="text-danger"></span> <!--Muestra mensajes de error de las validaciones del MODELO , de una propiedad especifica, en este caso "FechaTransaccion"-->
+	</div>
+
+	<button class="btn btn-primary">Enviar</button>
+	<a class="btn btn-secondary" asp-controller="Transacciones" asp-action="Index">Cancelar</a>
+</form>
+
+@section Scripts {
+	<!--En el archivo Layout.cshtml este section se ubica al final de los scripts en RenderSectionAsync
+	Gracias a este section nos permite hacer las validaciones antes de enviar el POST
+	en pocas palabras hace las validaciones en el front
+	-->
+	<partial name="_ValidationScriptsPartial" />
+
+	<script src="~/js/FormularioTransacciones.js" asp-append-version="true"></script>
+
+	<script>
+
+		//HACEMOS UN AJAX
+
+		const urlObtenerCategorias ='@Url.Action("ObtenerCategorias")'; //URL que nos dice a que acción del controlador se dirige el POST
+
+		$(function(){
+			inicializarFormularioTransacciones(urlObtenerCategorias);
+		})
+
+	</script>
+
+
+}

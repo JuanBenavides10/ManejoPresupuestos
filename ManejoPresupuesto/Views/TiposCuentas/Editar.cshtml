@@ -1,0 +1,35 @@
+﻿@model TipoCuenta
+@{
+	ViewData["Title"] = "Editar Tipo Cuenta";
+}
+
+<!--Se le denomina Tag Helpers a asp-*  -->
+
+<h1>Editar Tipo Cuenta: @Model.Nombre</h1>
+
+<div asp-validation-summary="ModelOnly" class="text-danger"></div> <!--ModelOnly Muestra errores generales, no ligados a ninguna propiedad, estos errores pueden venir de cualquier parte, pero lo mas comun es que venga del controlador-->
+
+<form asp-controller="TiposCuentas" asp-action="Editar"><!-- Especificamos la accion y el controlador al que apunta -->
+	
+	<input type="hidden" asp-for="Id"/>
+	
+	<div class="mb-3">
+		<!-- asp-for se basa en el nombre y valor de la propiedad , no necesitamos usar aModel.Nombre
+		los atributos de css (id y name) toman el nombre de la propiedad, en este caso la propiedad del modelo es "Nombre"
+		el atributo de css (value) toma el valor de la propiedad-->
+		<label asp-for="Nombre" class="form-label"></label>
+		<input type="text" asp-for="Nombre" class="form-control" />
+		<span asp-validation-for="Nombre" class="text-danger"></span><!--Muestra mensajes de error de las validaciones del MODELO , de una propiedad especifica, en este caso "Nombre"-->
+	</div>
+
+	<button type="submit" class="btn btn-primary">Enviar</button>
+	<a class="btn btn-secondary" asp-controller="TiposCuentas"  asp-action="Index">Cancelar</a> <!--Especificamos el metodo index del controlador-->
+</form>
+
+@section Scripts {
+	<!--En el archivo Layout.cshtml este section se ubica al final de los scripts en RenderSectionAsync
+	Gracias a este section nos permite hacer las validaciones antes de enviar el POST
+	en pocas palabras hace las validaciones en el front
+	-->
+	<partial name="_ValidationScriptsPartial" />
+}

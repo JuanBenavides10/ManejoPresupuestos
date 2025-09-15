@@ -1,0 +1,53 @@
+﻿@model CuentaCreacionViewModel 
+
+@{
+	ViewData["Title"] = "Editar Cuenta"; 
+}
+
+<h1>Editar Cuenta: @Model.Nombre</h1>
+
+
+<form asp-controller="Cuentas" asp-action="Editar">
+	<div asp-validation-summary="ModelOnly" class="text-danger"></div><!--ModelOnly Muestra errores generales, no ligados a ninguna propiedad, estos errores pueden venir de cualquier parte, pero lo mas comun es que venga del controlador-->
+
+	<input type="hidden" asp-for="Id"/>
+
+	<div class="mb-3">
+		<label asp-for="Nombre" class="form-label"></label>
+		<input asp-for="Nombre" class="form-control" />
+		<span asp-validation-for="Nombre" class="text-danger"></span> <!--Muestra mensajes de error de las validaciones del MODELO , de una propiedad especifica, en este caso "Nombre"-->
+	</div>
+
+	<div class="mb-3">
+		<label asp-for="TipoCuentaId" class="form-label"></label>
+		<select asp-for="TipoCuentaId" asp-items="Model.TiposCuentas" class="form-select"></select> <!-- asp-items llena una etiqueta <select> (lista desplegable) con una colección de elementos -->
+		<span asp-validation-for="TipoCuentaId" class="text-danger"></span> <!--Muestra mensajes de error de las validaciones del MODELO , de una propiedad especifica, en este caso "TipoCuentaId"-->
+	</div>
+
+	<div class="mb-3">
+		<label asp-for="Balance" class="form-label"></label>
+		<input asp-for="Balance" class="form-control" />
+		<span asp-validation-for="Balance" class="text-danger"></span> <!--Muestra mensajes de error de las validaciones del MODELO , de una propiedad especifica, en este caso "Balance"-->
+
+	</div>
+
+	<div class="mb-3">
+		<label asp-for="Descripcion" class="form-label"></label>
+		<textarea asp-for="Descripcion" class="form-control"></textarea>
+		<span asp-validation-for="Descripcion" class="text-danger"></span> <!--Muestra mensajes de error de las validaciones del MODELO , de una propiedad especifica, en este caso "Descripcion"-->
+
+	</div>
+
+	<button type="submit" class="btn btn-primary">Enviar</button>
+	<a class="btn btn-secondary" asp-controller="Cuentas" asp-action="Index">Cancelar</a>
+
+</form>
+
+
+@section Scripts {
+	<!--En el archivo Layout.cshtml este section se ubica al final de los scripts en RenderSectionAsync
+	Gracias a este section nos permite hacer las validaciones antes de enviar el POST
+	en pocas palabras hace las validaciones en el front
+	-->
+	<partial name="_ValidationScriptsPartial" />
+}
