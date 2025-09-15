@@ -1,0 +1,39 @@
+# Archivos y carpetas de Visual Studio
+.vs/
+*.user
+*.suo
+*.sln.docstates
+
+# Carpetas de compilación
+bin/
+obj/
+
+# Archivos de dependencias
+*.lock.json
+project.lock.json
+
+# Archivos temporales
+*.tmp
+*.log
+*.vspscc
+*.vssscc
+
+# Configuración de usuario
+*.userprefs
+
+# Archivos de Resharper y Rider
+_ReSharper*/
+*.DotSettings.user
+
+# Archivos de cobertura
+*.coverage
+*.coveragexml
+
+# Archivos de publicación
+publish/
+wwwroot/lib/
+
+# Archivos generados por paquetes NuGet
+*.nupkg
+*.snupkg
+packages/
