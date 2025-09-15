@@ -14,7 +14,7 @@ namespace ManejoPresupuesto.Controllers
         private readonly IRepositorioTransacciones repositorioTransacciones;
         private readonly IMapper mapper;
 
-        //probando git
+        //probando git2
         public TransaccionesController(IServicioUsuarios servicioUsuarios,
             IRepositorioCuentas repositorioCuentas,
             IRepositorioCategorias repositorioCategorias,
