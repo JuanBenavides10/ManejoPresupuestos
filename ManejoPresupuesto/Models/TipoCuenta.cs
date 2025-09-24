@@ -28,7 +28,7 @@ namespace ManejoPresupuesto.Models
 
         [Required(ErrorMessage = "El Campo {0} es requerido")]   // atributo: valida que el campo sea obligatorio
         [PrimeraLetraMayuscula]
-        [Remote(action:"VerificarExisteTipoCuenta",controller:"TiposCuentas")] //Remote hace una llamada al servidor(controlador) con el metodo VerificarExisteTipoCuenta validando si el nombre ya existe
+        [Remote(action:"VerificarExisteTipoCuenta",controller:"TiposCuentas", AdditionalFields = nameof(Id))] //Remote hace una llamada al servidor(controlador) con el metodo VerificarExisteTipoCuenta validando si el nombre ya existe
 
         public string Nombre { get; set; } // propiedad
         public int UsuarioId { get; set; }

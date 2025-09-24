@@ -9,7 +9,7 @@ namespace ManejoPresupuesto.Servicios
         Task Actualizar(TipoCuenta tipoCuenta);
         Task Borrar(int id);
         Task Crear(TipoCuenta tipoCuenta);
-        Task<bool> Existe(string nombre, int usuarioId);
+        Task<bool> Existe(string nombre, int usuarioId,int id = 0);
         Task<IEnumerable<TipoCuenta>> Obtener(int usuarioId);
         Task<TipoCuenta> ObtenerPorId(int id, int usuarioId);
         Task Ordenar(IEnumerable<TipoCuenta> tipoCuentasOrdenados);
@@ -42,14 +42,14 @@ namespace ManejoPresupuesto.Servicios
             tipoCuenta.Id = id;
         }
 
-        public async Task<bool> Existe(string nombre, int usuarioId)
+        public async Task<bool> Existe(string nombre, int usuarioId,int id=0)
         {
             using var connection = new SqlConnection(connectionString);
 
             //QueryFirstOrDefaultAsync -> Obtiene lo primero que encuentre o un valor por defecto
             // valor por defecto como es <int> seria 0 en caso no encuentre nada
             var existe = await connection.QueryFirstOrDefaultAsync<int>(@"SELECT 1 FROM TiposCuentas 
-                        WHERE Nombre = @Nombre AND UsuarioId = @UsuarioId;", new { nombre, usuarioId });
+                        WHERE Nombre = @Nombre AND UsuarioId = @UsuarioId AND Id<>@id;", new { nombre, usuarioId,id });
 
             return existe == 1;
         }
@@ -77,6 +77,7 @@ namespace ManejoPresupuesto.Servicios
 
             //QueryFirstOrDefaultAsync -> Obtiene lo primero que encuentre o un valor por defecto
             // valor por defecto como es <TipoCuenta> seria NULL en caso no encuentre nada
+            // No Lanza excepción si hay más de una fila, simplemete ignora las demas
 
             return await connection.QueryFirstOrDefaultAsync<TipoCuenta>(@"SELECT Id,Nombre,Orden FROM TiposCuentas WHERE Id=@Id AND UsuarioId=@UsuarioId",new {id,usuarioId});
         

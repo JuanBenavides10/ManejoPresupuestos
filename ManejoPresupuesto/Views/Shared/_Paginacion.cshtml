@@ -1,0 +1,51 @@
+﻿@model PaginacionRespuesta
+
+@{
+	var plantillaLink = string.Concat(Model.BaseURL, "?pagina={0}&recordsPorPagina={1}");
+
+	var activarBotonAnterior = Model.Pagina > 1;
+	var activarBotonSiguiente = Model.Pagina < Model.CantidadTotalDePaginas;
+}
+
+<nav>
+	<ul class="pagination">
+		<li class="page-item @(activarBotonAnterior ? null : "disabled")">
+			@if (activarBotonAnterior)
+			{
+				<a class="page-link" href="@string.Format(plantillaLink,Model.Pagina-1,Model.RecordsPorPagina)">
+					<!-- string.Format(variable,valor que reemplaza {0},valor que reemplaza {1}) -->
+					Anterior
+				</a>
+			}
+			else
+			{
+				<span class="page-link">Anterior</span>
+			}
+		</li>
+
+		@for (var pagina=1; pagina<=Model.CantidadTotalDePaginas; pagina++)
+		{
+			<li class="page-item @(pagina==Model.Pagina ? "active" : null )">
+				<!--  Cada vez que hacemos click en la etiqueta <a> lanza una peticion HTTP GET , ejecutando el metodo Index del controlador Categorias -->
+				<a class="page-link" href="@string.Format(plantillaLink,pagina,Model.RecordsPorPagina)"> <!-- string.Format(variable,valor que reemplaza {0},valor que reemplaza {1}) -->
+					@pagina
+				</a>
+			</li>
+		}
+
+		<li class="page-item @(activarBotonSiguiente ? null : "disabled")">
+			@if (activarBotonSiguiente)
+			{
+				<a class="page-link" href="@string.Format(plantillaLink,Model.Pagina+1,Model.RecordsPorPagina)">
+					<!-- string.Format(variable,valor que reemplaza {0},valor que reemplaza {1}) -->
+					Siguiente
+				</a>
+			}
+			else
+			{
+				<span class="page-link">Siguiente</span>
+			}
+		</li>
+
+	</ul>
+</nav>

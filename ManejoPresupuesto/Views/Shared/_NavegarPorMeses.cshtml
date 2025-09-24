@@ -1,0 +1,21 @@
+﻿@model DateTime
+
+
+<h4>
+	@* 	<a asp-controller="Cuentas" asp-action="Detalle" asp-route-mes="@ViewBag.mesAnterior" asp-route-año="@ViewBag.añoAnterior"
+	   class="btn btn-secondary"><i class="bi-chevron-left"></i></a>
+	@Model.FechaInicio.ToString("MMM")-@Model.FechaInicio.Year
+
+	<a asp-controller="Cuentas" asp-action="Detalle" asp-route-mes="@ViewBag.mesPosterior" asp-route-año="@ViewBag.añoPosterior"
+	   class="btn btn-secondary"><i class="bi-chevron-right"></i></a> *@
+
+	<!-- Cuando no especificamos controlador ni acción, el link apunta al mismo controlador y acción actuales -->
+	<!-- 1er ejemplo, cuando estamos en la vista Index de Transacciones se va TransaccionesController a la accion Index -->
+	<!-- 2do ejemplo, cuando estamos en la vista Detalle de Cuentas se va a CuentrasController a la accion Detalle -->
+	<a asp-route-mes="@ViewBag.mesAnterior" asp-route-año="@ViewBag.añoAnterior"
+	   class="btn btn-secondary"><i class="bi-chevron-left"></i></a>
+	@Model.ToString("MMM")-@Model.Year
+
+	<a asp-route-mes="@ViewBag.mesPosterior" asp-route-año="@ViewBag.añoPosterior"
+	   class="btn btn-secondary"><i class="bi-chevron-right"></i></a>
+</h4>

@@ -205,6 +205,14 @@
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
     },
     {
+      "Id": "C:\\Users\\Alcachofa7w7\\Documents\\C#Projects\\ManejoPresupuesto\\ManejoPresupuesto\\wwwroot\\lib\\fullcalendar\\main.min.css",
+      "PackagePath": "staticwebassets\\lib\\fullcalendar\\main.min.css"
+    },
+    {
+      "Id": "C:\\Users\\Alcachofa7w7\\Documents\\C#Projects\\ManejoPresupuesto\\ManejoPresupuesto\\wwwroot\\lib\\fullcalendar\\main.min.js",
+      "PackagePath": "staticwebassets\\lib\\fullcalendar\\main.min.js"
+    },
+    {
       "Id": "C:\\Users\\Alcachofa7w7\\Documents\\C#Projects\\ManejoPresupuesto\\ManejoPresupuesto\\wwwroot\\lib\\jquery-ui\\AUTHORS.txt",
       "PackagePath": "staticwebassets\\lib\\jquery-ui\\AUTHORS.txt"
     },

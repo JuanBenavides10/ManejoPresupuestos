@@ -71,7 +71,7 @@
 							var claseCuenta = ObtenerClaseBalance(cuenta.Balance);
 							<li class="list-group-item">
 								<span>
-									<strong>@cuenta.Nombre</strong>
+									<strong><a asp-controller="Cuentas" asp-action="Detalle" asp-route-id="@cuenta.Id">@cuenta.Nombre</a></strong>
 									<!-- asp-route-id -> agrega un id en la URL -->
 									<a asp-controller="Cuentas" asp-action="Editar" asp-route-id="@cuenta.Id" class="btn-primary btn">
 										<i class="bi-pencil-fill"></i>

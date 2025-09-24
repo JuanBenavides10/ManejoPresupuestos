@@ -2,6 +2,13 @@
 
 @{
 	ViewData["Title"] = "Editar Transaccion";
+
+
+	/*
+	si Model.urlRetorno tiene un valor entonces linkCancelar seria por ejemplo = "/Transacciones?pagina=2"
+	si Model.urlRetorno no tiene un valor entonces linkCancelar seria por ejemplo = "/Transacciones/Index"
+			*/
+	var linkCancelar = Model.urlRetorno ?? Url.Action("Index");
 }
 
 <h1>Editar Transaccion</h1>
@@ -10,7 +17,8 @@
 <form asp-controller="Transacciones" asp-action="Editar">
 	<div asp-validation-summary="ModelOnly" class="text-danger"></div> <!--ModelOnly Muestra errores generales, no ligados a ninguna propiedad, estos errores pueden venir de cualquier parte, pero lo mas comun es que venga del controlador-->
 
-	<input type="hidden" asp-for ="Id" />
+	<input type="hidden" asp-for="Id" />
+	<input type="hidden" asp-for="urlRetorno" />
 	<input type="hidden" asp-for="MontoAnterior" />
 	<input type="hidden" asp-for ="CuentaAnteriorId" />
 
@@ -51,7 +59,7 @@
 
 	<button class="btn btn-primary">Actualizar</button>
 	<button class="btn btn-danger" asp-controller="Transacciones" asp-action="Borrar">Borrar</button>
-	<a class="btn btn-secondary" asp-controller="Transacciones" asp-action="Index">Cancelar</a>
+	<a class="btn btn-secondary" href="@linkCancelar">Cancelar</a>
 </form>
 
 @section Scripts {

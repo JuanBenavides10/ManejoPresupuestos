@@ -141,10 +141,10 @@ namespace ManejoPresupuesto.Controllers
 
 
         [HttpGet]
-        public async Task<IActionResult> VerificarExisteTipoCuenta(string nombre) //Hacemos la validacion consultando en la BD y retornamos un Json para que el navegador lo interprete y muestre el mensaje
+        public async Task<IActionResult> VerificarExisteTipoCuenta(string nombre,int id) //Hacemos la validacion consultando en la BD y retornamos un Json para que el navegador lo interprete y muestre el mensaje
         { //en el modelo usamos [Remote]
             var usuarioId = servicioUsuarios.ObtenerUsuarioId();
-            var yaExisteTipoCuenta = await repositorioTiposCuentas.Existe(nombre, usuarioId);
+            var yaExisteTipoCuenta = await repositorioTiposCuentas.Existe(nombre, usuarioId,id);
             
             if(yaExisteTipoCuenta){
                 return Json($"El nombre {nombre} ya existe."); //Json formato ligero y adecuado para comunicar datos entre navegador y servidor

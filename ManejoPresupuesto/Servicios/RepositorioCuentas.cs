@@ -45,7 +45,7 @@ ORDER BY tc.Orden", new {usuarioId});
         {
             using var connection = new SqlConnection(connectionString);
             return await connection.QueryFirstOrDefaultAsync<Cuenta>(
-                @"SELECT c.Id,c.Nombre,c.Balance , c.Descripcion, tc.Id
+                @"SELECT c.Id,c.Nombre,c.Balance , c.Descripcion, c.TipoCuentaId
 FROM Cuentas AS c
 INNER JOIN TiposCuentas AS tc ON tc.Id=c.TipoCuentaId 
 WHERE tc.UsuarioId = @UsuarioId AND c.Id=@Id", new {id,usuarioId} );
